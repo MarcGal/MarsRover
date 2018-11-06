@@ -1,10 +1,16 @@
 // Rover Object Goes Here
 
+var rover = {
+  direction: "N",
+};
+
+
 
 // ======================
 
 // ======================
 function turnLeft(rover){
+  
   console.log("turnLeft was called!");
 }
 
@@ -15,3 +21,5 @@ function turnRight(rover){
 function moveForward(rover){
   console.log("moveForward was called")
 }
+
+console.log(rover.direction);
