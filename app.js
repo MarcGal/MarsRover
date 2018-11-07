@@ -2,8 +2,7 @@
 
 var rover = {
   direction: "N",
-  x: 0,
-  y: 0,
+  position: [0,0],
   travelLog: [],
 };
 
@@ -64,21 +63,21 @@ function turnRight(rover){
 function moveForward(rover){
 
   if (rover.direction==="N"){
-    rover.y += 1;
+    rover.position[1]++;
 
   } else if (rover.direction === "S"){
-    rover.y -= 1;
+    rover.position[1]--;
 
   } else if (rover.direction === "E"){
-    rover.x += 1;
+    rover.position[0]++;
 
   } else if (rover.direction === "W"){
-    rover.x -= 1;
+    rover.position[0]--;
   }
 
-  rover.travelLog.push(rover.x + "," + rover.y);
+  rover.travelLog.push(rover.position[0] + "," + rover.position[1]);
 
-  console.log("moveForward was called" + "." + " New position: " + rover.x + ", " + rover.y + "." + " Direction: " + rover.direction);
+  console.log("moveForward was called" + "." + " New position: " + rover.position[0] + ", " + rover.position[1] + "." + " Direction: " + rover.direction);
   
 }
 
@@ -103,11 +102,11 @@ function directions (commands){
   console.log(rover.travelLog);
 }
 
-// directions('rfffrfff');
+directions('rfffrfff');
 
 
 // ===================   Boundaries Function =======================
 
-function boundaries (position){
+// function boundaries (position){
     
-}
+// }
