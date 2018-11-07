@@ -74,16 +74,32 @@ function moveForward(rover){
   } else if (rover.direction === "W"){
     rover.x -= 1;
   }
-  console.log("moveForward was called" + "." + " New position: " + rover.x + ", " + rover.y);
+  console.log("moveForward was called" + "." + " New position: " + rover.x + ", " + rover.y + "." + " Direction: " + rover.direction);
 }
 
 
+// ============    TAKE DIRECTIONS  FUNCTION  ==========
 
-// moveForward(rover);
+var commands = '';
 
-// turnLeft(rover);
+function directions (commands){
+  for (var i = 0; i < commands.length; i++){
 
-// moveForward(rover);
+    if (commands[i]=== 'r'){
+      turnRight(rover);
+
+    } else if (commands[i] === 'l'){
+      turnLeft(rover);
+
+    } else if (commands[i] === 'f'){
+      moveForward (rover);
+    }
+  }
+}
+
+//directions('rfffrfff');
+
+
 
 
 
