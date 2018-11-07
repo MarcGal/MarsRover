@@ -2,6 +2,8 @@
 
 var rover = {
   direction: "N",
+  x: 0,
+  y: 0,
 };
 
 
@@ -56,7 +58,32 @@ function turnRight(rover){
   console.log("turnRight was called!");
 }
 
+// ============    MOVEFORWARD FUNCTION  ==========
+
 function moveForward(rover){
-  console.log("moveForward was called");
+
+  if (rover.direction==="N"){
+    rover.y += 1;
+
+  } else if (rover.direction === "S"){
+    rover.y -= 1;
+
+  } else if (rover.direction === "E"){
+    rover.x += 1;
+
+  } else if (rover.direction === "W"){
+    rover.x -= 1;
+  }
+  console.log("moveForward was called" + "." + " New position: " + rover.x + ", " + rover.y);
 }
+
+
+
+// moveForward(rover);
+
+// turnLeft(rover);
+
+// moveForward(rover);
+
+
 
