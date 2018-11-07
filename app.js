@@ -103,9 +103,11 @@ function directions (commands){
   console.log(rover.travelLog);
 }
 
-directions('rfffrfff');
+// directions('rfffrfff');
 
 
+// ===================   Boundaries Function =======================
 
-
-
+function boundaries (position){
+    
+}
