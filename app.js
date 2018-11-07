@@ -94,6 +94,28 @@ function moveForward(rover){
   
 }
 
+// ============    MOVEBACKWARD FUNCTION  ==========
+
+function moveBackwards(rover){
+
+  if (rover.direction==="N"){
+    rover.position[1]--;
+
+  } else if (rover.direction === "S"){
+    rover.position[1]++;
+
+  } else if (rover.direction === "E"){
+    rover.position[0]--;
+
+  } else if (rover.direction === "W"){
+    rover.position[0]++;
+  }
+
+  rover.travelLog.push(rover.position[0] + "," + rover.position[1]);
+
+  console.log("moveBackwards was called" + "." + " New position: " + rover.position[0] + ", " + rover.position[1] + "." + " Direction: " + rover.direction);
+  
+}
 
 // ============    TAKE DIRECTIONS  FUNCTION  ==========
 
@@ -110,12 +132,15 @@ function directions (commands){
 
     } else if (commands[i] === 'f'){
       moveForward (rover);
+
+    } else if (commands[i] === 'b'){
+      moveBackwards(rover);
     }
   }
   console.log(rover.travelLog);
 }
 
-directions('rfffrfff');
+directions('rfffrffflbb');
 
 
 // ===================   Boundaries Function =======================
