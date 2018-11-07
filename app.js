@@ -4,6 +4,7 @@ var rover = {
   direction: "N",
   x: 0,
   y: 0,
+  travelLog: [],
 };
 
 
@@ -74,7 +75,11 @@ function moveForward(rover){
   } else if (rover.direction === "W"){
     rover.x -= 1;
   }
+
+  rover.travelLog.push(rover.x + "," + rover.y);
+
   console.log("moveForward was called" + "." + " New position: " + rover.x + ", " + rover.y + "." + " Direction: " + rover.direction);
+  
 }
 
 
@@ -95,9 +100,10 @@ function directions (commands){
       moveForward (rover);
     }
   }
+  console.log(rover.travelLog);
 }
 
-//directions('rfffrfff');
+directions('rfffrfff');
 
 
 
