@@ -147,6 +147,7 @@ function moveBackwards(rover){
 // ===================   Boundaries Function =======================
 
 function boundaries (rover){
+  //We've got 
   if (rover.position[0] === -1 && rover.direction === 'W' || rover.position[0] === 10 && rover.direction === 'E'){
     console.log('You are approaching unknown territory, we are going back!');
     moveBackwards(rover);
@@ -179,6 +180,10 @@ function directions (commands){
 
   for (var i = 0; i < commands.length; i++){
 
+  // the functions takes a string of commands. Everytime the a command
+  // is executed, the function runs the boundary function and checks 
+  // the rover's position to keep it inside the grid.
+  
     if (commands[i]=== 'r'){
       turnRight(rover);
       boundaries(rover);
@@ -209,19 +214,3 @@ directions('');
 
 
 
-
-
-// if (rover.position[0] || rover.position[1] === 10) {
-//   console.log('You are approaching unknown territory, we are going back!');
-//   turnRight(rover);
-//   turnRight(rover);
-//   moveForward(rover);
-//   moveForward(rover);
-
-// } else if (rover.position[0] || rover.position[1] === -1){
-//   console.log('You are approaching unknown territory, we are going back!');
-//   turnLeft(rover);
-//   turnLeft(rover);
-//   moveForward(rover);
-//   moveForward(rover);
-// }
