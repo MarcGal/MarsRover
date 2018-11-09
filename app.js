@@ -120,6 +120,7 @@ function moveBackwards(rover){
 
 
 // ===================   Obstacles Function ========================
+// STILL NOT WORKING
 
 
 // function obstacles(mars){
@@ -147,7 +148,8 @@ function moveBackwards(rover){
 // ===================   Boundaries Function =======================
 
 function boundaries (rover){
-  //We've got 
+  //The function checks whether the rover has stepped out of the grid by looking
+  // if any of the Y or X values has gone over 9 or under 0
   if (rover.position[0] === -1 && rover.direction === 'W' || rover.position[0] === 10 && rover.direction === 'E'){
     console.log('You are approaching unknown territory, we are going back!');
     moveBackwards(rover);
@@ -210,7 +212,7 @@ function directions (commands){
 
 }
 
-directions('');
+
 
 
 
