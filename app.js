@@ -117,34 +117,111 @@ function moveBackwards(rover){
   
 }
 
+
+
+// ===================   Obstacles Function ========================
+
+
+// function obstacles(mars){
+
+//   function getRandomNum(){
+//     return Math.floor(Math.random() * 10);
+//   }
+
+//   for (var i = 0; i < mars.length; i++){
+//     var row = getRandomNum();
+//     var column = getRandomNum();
+//     console.log("Obstacle in Row: " + row + " " + "Column: " + column);
+//     var obstacle = mars[row][column];
+
+
+//     if (obstacle[0] === rover.position[0] && obstacle[1] === rover.position[1]){
+//       console.log("Watch out! obstacle in the way: " + row + ", " + column);
+//       // console.log("You have crashed with an obstacle on: " + row + ", " + column);
+//       return;
+//     }
+//   }
+// }
+
+
+// ===================   Boundaries Function =======================
+
+function boundaries (rover){
+  if (rover.position[0] === -1 && rover.direction === 'W' || rover.position[0] === 10 && rover.direction === 'E'){
+    console.log('You are approaching unknown territory, we are going back!');
+    moveBackwards(rover);
+    moveBackwards(rover);
+  
+  } else if (rover.position[0] === 10 && rover.direction === 'W' || rover.position[0] === -1 && rover.direction === 'E'){
+    console.log('You are approaching unknown territory, we are going back!');
+    moveForward(rover);
+    moveForward(rover);
+    
+  } else if (rover.position[1] === -1 && rover.direction === 'S' || rover.position[1] === 10 && rover.direction === 'N'){
+    console.log('You are approaching unknown territory, we are going back!');
+    moveBackwards(rover);
+    moveBackwards(rover);
+  
+  } else if (rover.position[1] === 10 && rover.direction === 'S' || rover.position[1] === -1 && rover.direction === 'N'){
+    console.log('You are approaching unknown territory, we are going back!');
+    moveForward(rover);
+    moveForward(rover);
+  }
+}
+
+
+
 // ============    TAKE DIRECTIONS  FUNCTION  ==========
 
 var commands = '';
 
 function directions (commands){
+
   for (var i = 0; i < commands.length; i++){
 
     if (commands[i]=== 'r'){
       turnRight(rover);
+      boundaries(rover);
 
     } else if (commands[i] === 'l'){
       turnLeft(rover);
+      boundaries(rover);
 
     } else if (commands[i] === 'f'){
       moveForward (rover);
+      boundaries(rover);
 
     } else if (commands[i] === 'b'){
       moveBackwards(rover);
+      boundaries(rover);
+
+    } else {
+      console.log ('Command not identified, not executed');
     }
+
   }
+
   console.log(rover.travelLog);
+
 }
 
-directions('rfffrffflbb');
+directions('');
 
 
-// ===================   Boundaries Function =======================
 
-// function boundaries (position){
-    
+
+
+// if (rover.position[0] || rover.position[1] === 10) {
+//   console.log('You are approaching unknown territory, we are going back!');
+//   turnRight(rover);
+//   turnRight(rover);
+//   moveForward(rover);
+//   moveForward(rover);
+
+// } else if (rover.position[0] || rover.position[1] === -1){
+//   console.log('You are approaching unknown territory, we are going back!');
+//   turnLeft(rover);
+//   turnLeft(rover);
+//   moveForward(rover);
+//   moveForward(rover);
 // }
