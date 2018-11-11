@@ -150,25 +150,21 @@ function moveBackwards(rover){
 function boundaries (rover){
   //The function checks whether the rover has stepped out of the grid by looking
   // if any of the Y or X values has gone over 9 or under 0
-  if (rover.position[0] === -1 && rover.direction === 'W' || rover.position[0] === 10 && rover.direction === 'E'){
-    console.log('You are approaching unknown territory, we are going back!');
-    moveBackwards(rover);
-    moveBackwards(rover);
+  if (rover.position[0] === 0 && rover.direction === 'W' || rover.position[0] === 9 && rover.direction === 'E'){
+    console.log('You are approaching unknown territory, we can`t continue. Current position: ' + rover.position + '. ' + 'Direction: ' + rover.direction);
+    return; 
   
-  } else if (rover.position[0] === 10 && rover.direction === 'W' || rover.position[0] === -1 && rover.direction === 'E'){
-    console.log('You are approaching unknown territory, we are going back!');
-    moveForward(rover);
-    moveForward(rover);
+  } else if (rover.position[0] === 9 && rover.direction === 'W' || rover.position[0] === 0 && rover.direction === 'E'){
+    console.log('You are approaching unknown territory, we can`t continue. Current position: ' + rover.position + '. ' + 'Direction: ' + rover.direction);
+    return;
     
-  } else if (rover.position[1] === -1 && rover.direction === 'S' || rover.position[1] === 10 && rover.direction === 'N'){
-    console.log('You are approaching unknown territory, we are going back!');
-    moveBackwards(rover);
-    moveBackwards(rover);
+  } else if (rover.position[1] === 0 && rover.direction === 'S' || rover.position[1] === 9 && rover.direction === 'N'){
+    console.log('You are approaching unknown territory, we can`t continue. Current position: ' + rover.position + '. ' + 'Direction: ' + rover.direction);
+    return;
   
-  } else if (rover.position[1] === 10 && rover.direction === 'S' || rover.position[1] === -1 && rover.direction === 'N'){
-    console.log('You are approaching unknown territory, we are going back!');
-    moveForward(rover);
-    moveForward(rover);
+  } else if (rover.position[1] === 9 && rover.direction === 'S' || rover.position[1] === 0 && rover.direction === 'N'){
+    console.log('You are approaching unknown territory, we can`t continue. Current position: ' + rover.position + '. ' + 'Direction: ' + rover.direction);
+    return;
   }
 }
 
@@ -188,19 +184,23 @@ function directions (commands){
   
     if (commands[i]=== 'r'){
       turnRight(rover);
-      boundaries(rover);
 
     } else if (commands[i] === 'l'){
       turnLeft(rover);
-      boundaries(rover);
 
     } else if (commands[i] === 'f'){
-      moveForward (rover);
-      boundaries(rover);
+      if (boundaries(rover)){
+        return;
+      }else{
+        moveForward (rover);
+      }
 
     } else if (commands[i] === 'b'){
-      moveBackwards(rover);
-      boundaries(rover);
+      if (boundaries(rover)){
+        return;
+      } else {
+        moveBackwards (rover);
+      }
 
     } else {
       console.log ('Command not identified, not executed');
