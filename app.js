@@ -6,7 +6,8 @@ var rover = {
   travelLog: [],
 };
 
-
+// crear clase rover con todas la funciones dentro. Asi podemos crear rovers extras 
+// con las mismas propiedades
 
 // ====================== MARS GRID ====================
 
@@ -120,7 +121,7 @@ function moveBackwards(rover){
 
 
 // ===================   Obstacles Function ========================
-// STILL NOT WORKING
+//STILL NOT WORKING
 
 
 // function obstacles(mars){
@@ -134,6 +135,8 @@ function moveBackwards(rover){
 //     var column = getRandomNum();
 //     console.log("Obstacle in Row: " + row + " " + "Column: " + column);
 //     var obstacle = mars[row][column];
+
+//   // decirle a la función que reemplace el valor del grid con las coordenadas
 
 
 //     if (obstacle[0] === rover.position[0] && obstacle[1] === rover.position[1]){
@@ -199,8 +202,9 @@ function directions (commands){
       boundaries(rover);
 
     } else if (commands[i] === 'b'){
+      if(!boundaries(rover)){; // incluir en la funcion de boundaries el return para parar la funcion si el resultado es true
       moveBackwards(rover);
-      boundaries(rover);
+      }
 
     } else {
       console.log ('Command not identified, not executed');
