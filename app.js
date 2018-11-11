@@ -202,10 +202,9 @@ function directions (commands){
       boundaries(rover);
 
     } else if (commands[i] === 'b'){
-      if(!boundaries(rover)){; // incluir en la funcion de boundaries el return para parar la funcion si el resultado es true
       moveBackwards(rover);
-      }
-
+      moveBackwards(rover);
+    
     } else {
       console.log ('Command not identified, not executed');
     }
