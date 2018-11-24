@@ -2,9 +2,13 @@
 
 var rover = {
   direction: "N",
-  position: [0,0],
+  position: {
+    x: 0,
+    y: 0,
+  },
   travelLog: [],
 };
+
 
 
 
@@ -76,21 +80,21 @@ function turnRight(rover){
 function moveForward(rover){
 
   if (rover.direction==="N"){
-    rover.position[1]++;
-
-  } else if (rover.direction === "S"){
-    rover.position[1]--;
+    rover.position.x --;
 
   } else if (rover.direction === "E"){
-    rover.position[0]++;
+    rover.position.y ++;
+
+  } else if (rover.direction === "S"){
+    rover.position.x ++;
 
   } else if (rover.direction === "W"){
-    rover.position[0]--;
+    rover.position.y --;
   }
 
-  rover.travelLog.push(rover.position[0] + "," + rover.position[1]);
+  rover.travelLog.push(rover.position.x + "," + rover.position.y);
 
-  console.log("moveForward was called" + "." + " New position: " + rover.position[0] + ", " + rover.position[1] + "." + " Direction: " + rover.direction);
+  console.log("moveForward was called" + "." + " New position: " + rover.position.x + ", " + rover.position.y + "." + " Direction: " + rover.direction);
   
 }
 
@@ -99,139 +103,106 @@ function moveForward(rover){
 function moveBackwards(rover){
 
   if (rover.direction==="N"){
-    rover.position[1]--;
-
-  } else if (rover.direction === "S"){
-    rover.position[1]++;
+    rover.position.x ++;
 
   } else if (rover.direction === "E"){
-    rover.position[0]--;
+    rover.position.y --;
+
+  } else if (rover.direction === "S"){
+    rover.position.x --;
 
   } else if (rover.direction === "W"){
-    rover.position[0]++;
+    rover.position.y ++;
   }
 
-  rover.travelLog.push(rover.position[0] + "," + rover.position[1]);
+    rover.travelLog.push(rover.position.x + "," + rover.position.y);
 
-  console.log("moveBackwards was called" + "." + " New position: " + rover.position[0] + ", " + rover.position[1] + "." + " Direction: " + rover.direction);
+    console.log("moveBackwards was called" + "." + " New position: " + rover.position.x + ", " + rover.position.y + "." + " Direction: " + rover.direction);
   
 }
 
 
 
 // ===================   Obstacles Function ========================
-// STILL NOT WORKING
 
-
-// function obstacles(mars){
-
-//   function getRandomNum(){
-//     return Math.floor(Math.random() * 10);
-//   }
-
-//   for (var i = 0; i < mars.length; i++){
-//     var row = getRandomNum();
-//     var column = getRandomNum();
-//     console.log("Obstacle in Row: " + row + " " + "Column: " + column);
-//     var obstacle = mars[row][column];
-
-
-//     if (obstacle[0] === rover.position[0] && obstacle[1] === rover.position[1]){
-//       console.log("Watch out! obstacle in the way: " + row + ", " + column);
-//       // console.log("You have crashed with an obstacle on: " + row + ", " + column);
-//       return;
-//     }
-//   }
-// }
 
 
 // ===========================  Boundaries Function ===============================
 
-function boundaries (rover){
+function checkBoundaries (rover){
+    if (rover.position.x + 1 === 10){
+      console.log("You are approaching unknown territory, we can't continue");
+      return;
 
-    if (rover.position[0] === 0 || rover.direction === 'W' || commands[''] === 'f' ){
-      console.log('You are approaching unknown territory, we can`t continue. Current position: ' + rover.position + '. ' + 'Direction: ' + rover.direction);
-       turnLeft(rover);
-       turnLeft(rover);
+    } else if (rover.position.x - 1 === -1){
+      console.log("You are approaching unknown territory, we can't continue");
+      return;
 
-    // }else if(rover.position[0] < 0) {
-    //   console.log('You are approaching unknown territory, we can`t continue. Current position: ' + rover.position + '. ' + 'Direction: ' + rover.direction);
-    //    return;
-   
-    // }else if (rover.position[1] > 9) {
-    //   console.log('You are approaching unknown territory, we can`t continue. Current position: ' + rover.position + '. ' + 'Direction: ' + rover.direction);
-    //   return;
+    } else if (rover.position.y - 1 === -1){
+      console.log("You are approaching unknown territory, we can't continue");
+      return;
 
-    // } else if(rover.position[1] < 0) {
-    //   console.log('You are approaching unknown territory, we can`t continue. Current position: ' + rover.position + '. ' + 'Direction: ' + rover.direction);
-    //   return;
-     }
+    } else if (rover.position.y + 1 === 10){
+      console.log("You are approaching unknown territory, we can't continue");
+      return;
+
+    } else {
+      return false;
+    }
   }
   
 
 
 
-  // //The function checks whether the rover has stepped out of the grid by looking
-  // // if any of the Y or X values has gone over 9 or under 0
-  // if (rover.position[0] === 0 && rover.direction === 'W' || rover.position[0] === 9 && rover.direction === 'E'){
-  //   console.log('You are approaching unknown territory, we can`t continue. Current position: ' + rover.position + '. ' + 'Direction: ' + rover.direction);
-  //   return; 
+  function registerLog (rover, position){
+    rover.travelLog.push(position);
+    console.log(rover.position);
+  }
   
-  // } else if (rover.position[0] === 9 && rover.direction === 'W' /*|| rover.position[0] === 0 && rover.direction === 'E'*/){
-  //   console.log('You are approaching unknown territory, we can`t continue. Current position: ' + rover.position + '. ' + 'Direction: ' + rover.direction);
-  //   return;
-    
-  // } else if (rover.position[1] === 0 && rover.direction === 'S' || rover.position[1] === 9 && rover.direction === 'N'){
-  //   console.log('You are approaching unknown territory, we can`t continue. Current position: ' + rover.position + '. ' + 'Direction: ' + rover.direction);
-  //   return;
-  
-  // } else if (rover.position[1] === 9 && rover.direction === 'S' /*|| rover.position[1] === 0 && rover.direction === 'N'*/){
-  //   console.log('You are approaching unknown territory, we can`t continue. Current position: ' + rover.position + '. ' + 'Direction: ' + rover.direction);
-  //   return;
-  // }
-// }
-
-
 
 // ============    TAKE DIRECTIONS  FUNCTION  ==========
 
 var commands = '';
 
-function directions (commands){
+function directions (commands, rover){
 
-  for (var i = 0; i < commands.length; i++){
+  for (var i = 0; i <= commands.length; i++){
 
   // the functions takes a string of commands. Everytime the a command
   // is executed, the function runs the boundary function and checks 
   // the rover's position to keep it inside the grid.
-  
-    if (commands[i]=== 'r'){
-      turnRight(rover);
-
-    } else if (commands[i] === 'l'){
-      turnLeft(rover);
-
-    } else if (commands[i] === 'f'){
-      // boundaries(rover);
-      // moveForward(rover);
-      if (boundaries(rover)){
-        return;
-      } else (moveForward (rover));
-
+    
+    switch (commands[i]) {
+      case 'r':
+        turnRight(rover);
+        break;
       
-    } else if (commands[i] === 'b'){
-      boundaries(rover);
-      moveBackwards (rover);
+        case 'l':
+        turnLeft(rover);
+        break;
 
-    } else {
-      console.log ('Command not identified, not executed');
+        case 'f':
+        // if (checkBoundaries(rover) === false){
+          checkBoundaries(rover);
+          moveForward(rover);
+          registerLog(rover, rover.position);
+        // } else {
+        //   return;
+        // }
+        break;
+
+        case 'b':
+        moveBackwards(rover);
+        registerLog(rover, rover.position);
+        break;
+    
+      default:
+        break;
     }
-
   }
-
   console.log(rover.travelLog);
+}  
 
-}
 
 
 
