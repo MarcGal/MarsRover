@@ -28,23 +28,23 @@ var mars = [
 ];
 
 // ============    TURN LEFT FUNCTION  ==========
-function turnLeft(rover){
+function turnLeft(){
   
-  switch(rover.direction){
+  switch(this.direction){
     case "N":
-    rover.direction = "W";
+    this.direction = "W";
     break;
     
     case "W":
-    rover.direction = "S";
+    this.direction = "S";
     break;
 
     case "S":
-    rover.direction = "E";
+    this.direction = "E";
     break;
 
     case "E":
-    rover.direction = "N";
+    this.direction = "N";
     break;
   } 
   
@@ -53,23 +53,23 @@ function turnLeft(rover){
 
 // ============    TURN RIGHT FUNCTION  ==========
 
-function turnRight(rover){
+function turnRight(){
 
-  switch(rover.direction){
+  switch(this.direction){
     case "N":
-    rover.direction = "E";
+    this.direction = "E";
     break;
     
     case "E":
-    rover.direction = "S";
+    this.direction = "S";
     break;
 
     case "S":
-    rover.direction = "W";
+    this.direction = "W";
     break;
 
     case "W":
-    rover.direction = "N";
+    this.direction = "N";
     break;
   }
   console.log("turnRight was called!");
@@ -77,48 +77,48 @@ function turnRight(rover){
 
 // ============    MOVEFORWARD FUNCTION  ==========
 
-function moveForward(rover){
+function moveForward(){
 
-  if (rover.direction==="N"){
-    rover.position.x --;
+  if (this.direction==="N"){
+    this.position.x --;
 
-  } else if (rover.direction === "E"){
-    rover.position.y ++;
+  } else if (this.direction === "E"){
+    this.position.y ++;
 
-  } else if (rover.direction === "S"){
-    rover.position.x ++;
+  } else if (this.direction === "S"){
+    this.position.x ++;
 
-  } else if (rover.direction === "W"){
-    rover.position.y --;
+  } else if (this.direction === "W"){
+    this.position.y --;
   }
 
-  rover.travelLog.push(rover.position.x + "," + rover.position.y);
+  this.travelLog.push(this.position.x + "," + this.position.y);
 
-  console.log("moveForward was called" + "." + " New position: " + rover.position.x + ", " + rover.position.y + "." + " Direction: " + rover.direction);
+  console.log("moveForward was called" + "." + " New position: " + this.position.x + ", " + this.position.y + "." + " Direction: " + rover.direction);
   
 }
 
 // ============    MOVEBACKWARD FUNCTION  ==========
 
-function moveBackwards(rover){
+function moveBackwards(this){
 
-  if (rover.direction==="N"){
-    rover.position.x ++;
+  if (this.direction==="N"){
+    this.position.x ++;
 
-  } else if (rover.direction === "E"){
-    rover.position.y --;
+  } else if (this.direction === "E"){
+    this.position.y --;
 
-  } else if (rover.direction === "S"){
-    rover.position.x --;
+  } else if (this.direction === "S"){
+    this.position.x --;
 
-  } else if (rover.direction === "W"){
-    rover.position.y ++;
+  } else if (this.direction === "W"){
+    this.position.y ++;
   }
 
-    rover.travelLog.push(rover.position.x + "," + rover.position.y);
+    this.travelLog.push(this.position.x + "," + this.position.y);
 
-    console.log("moveBackwards was called" + "." + " New position: " + rover.position.x + ", " + rover.position.y + "." + " Direction: " + rover.direction);
-  
+    console.log("moveBackwards was called" + "." + " New position: " + this.position.x + ", " + this.position.y + "." + " Direction: " + this.direction);
+
 }
 
 
@@ -129,20 +129,20 @@ function moveBackwards(rover){
 
 // ===========================  Boundaries Function ===============================
 
-function checkBoundaries (rover){
-    if (rover.position.x + 1 === 10){
+function checkBoundaries (){
+    if (this.position.x + 1 === 10){
       console.log("You are approaching unknown territory, we can't continue");
       return;
 
-    } else if (rover.position.x - 1 === -1){
+    } else if (this.position.x - 1 === -1){
       console.log("You are approaching unknown territory, we can't continue");
       return;
 
-    } else if (rover.position.y - 1 === -1){
+    } else if (this.position.y - 1 === -1){
       console.log("You are approaching unknown territory, we can't continue");
       return;
 
-    } else if (rover.position.y + 1 === 10){
+    } else if (this.position.y + 1 === 10){
       console.log("You are approaching unknown territory, we can't continue");
       return;
 
@@ -154,9 +154,9 @@ function checkBoundaries (rover){
 
 
 
-  function registerLog (rover, position){
-    rover.travelLog.push(position);
-    console.log(rover.position);
+  function registerLog (position){
+    this.travelLog.push(position);
+    console.log(this.position);
   }
   
 
